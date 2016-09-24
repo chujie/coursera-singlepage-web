@@ -17,8 +17,11 @@
       li > button {
         margin-left: 6px;
       }
-      button > span {
+      button > span.ok {
         color: green;
+      }
+      button > span.remove {
+        color: #bc2328;
       }
     </style>
   </head>
@@ -33,7 +36,7 @@
      <h2>To Buy:</h2>
      <ul>
        <li ng-repeat="item in toBuyListCtrl.shoppingList">Buy {{item.quantity}} {{item.name}} 
-         <button class="btn btn-default" ng-click="toBuyListCtrl.boughtItem($index)"><span class="glyphicon glyphicon-ok"></span> Bought</button>
+         <button class="btn btn-default" ng-click="toBuyListCtrl.boughtItem($index)"><span class="glyphicon glyphicon-ok ok"></span> Bought</button>
        </li>
      </ul>
      <div class="emptyMessage" ng-hide="toBuyListCtrl.shoppingList.length">Everything is bought!</div>
@@ -43,7 +46,9 @@
     <div class="col-md-6" ng-controller="AlreadyBoughtShoppingController as boughtListCtrl">
      <h2>Already Bought:</h2>
      <ul>
-       <li ng-repeat="item in boughtListCtrl.boughtList">Bought {{item.quantity}} {{item.name}}</li>
+       <li ng-repeat="item in boughtListCtrl.boughtList">Bought {{item.quantity}} {{item.name}}
+        <button class="btn btn-default" ng-click="boughtListCtrl.uncheckItem($index)"><span class="glyphicon glyphicon-remove remove"></span> Uncheck</button>
+       </li>
      </ul>
      <div class="emptyMessage" ng-hide="boughtListCtrl.boughtList.length">Nothing bought yet.</div>
     </div>

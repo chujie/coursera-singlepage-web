@@ -23,6 +23,10 @@ AlreadyBoughtShoppingController.$inject = ['ShoppingListCheckOffService'];
 function AlreadyBoughtShoppingController(ShoppingListCheckOffService) {
   var vm = this;
   vm.boughtList = ShoppingListCheckOffService.getBoughtList();  
+
+  vm.uncheckItem = function(itemIndex) {
+      ShoppingListCheckOffService.uncheckItem(itemIndex);
+  }
 }
 
 function ShoppingListCheckOffService() {
@@ -43,6 +47,11 @@ function ShoppingListCheckOffService() {
         var tmp = shoppingList.splice(itemIndex, 1);
         boughtList.push(tmp[0]);
     };
+
+    service.uncheckItem = function(itemIndex) {
+        var tmp = boughtList.splice(itemIndex, 1);
+        shoppingList.push(tmp[0]);
+    }
 
     service.getShoppingList = function() {
         return shoppingList;
